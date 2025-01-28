@@ -1,4 +1,4 @@
-package circularlinkedlist;
+package circularlinkedlist.taskscheduler;
 
 class TaskNode {
     int taskId;
