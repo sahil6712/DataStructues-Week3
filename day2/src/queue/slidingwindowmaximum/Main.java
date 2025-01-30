@@ -14,33 +14,37 @@ public class Main {
         int[] ans = new int[numberOfMax];
         int idx = 0;
 
-        Deque<Integer> dq = new ArrayDeque<>();
+        // Doubly ended queue
+        Deque<int[]> dq = new ArrayDeque<>();
 
         int count = 0;
-        for (int j : arr) {
-            if (dq.size() == k) {
+        int i = 0; // for tracking on which currently the iterations is
+        for (int j : arr) { // iterate the array
+            if ((!dq.isEmpty()) && i-dq.peekFirst()[1] == k) {  // if deque is full then remove 1 element
                 dq.removeFirst();
-            }
-            if (dq.isEmpty() || dq.peekLast() > j) {
-                dq.offer(j);
+            } // Check to insert in dequeue
+            if (dq.isEmpty() || dq.peekLast()[0] > j) {
+                dq.offer(new int[]{j,i});
                 count++;
-                if(count >= k) {
-                    ans[idx] = dq.peekFirst();
+                if(count >= k && (!dq.isEmpty())) {
+                    ans[idx] = dq.peekFirst()[0];
                     idx++;
                 }
 
             } else {
-                while (dq.peekLast() != null && j >= dq.peekLast()) {
+                // check for removing elements from the dequeue
+                while (dq.peekLast() != null && j >= dq.peekLast()[0]) {
                     dq.removeLast();
                 }
-                dq.offer(j);
+                dq.offer(new int[]{j, i});
                 count++;
-                if(count >= k) {
-                    ans[idx] = dq.peekFirst();
+                if(count >= k && (!dq.isEmpty())) {
+                    ans[idx] = dq.peekFirst()[0];
                     idx++;
                 }
 
             }
+            i++;
         }
 
 
