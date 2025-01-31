@@ -9,6 +9,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         // Input the size of the array
+        System.out.println("enter the number of books");
         int numberOfBooks = input.nextInt();
 
         int[] booksPrice = new int[numberOfBooks];
