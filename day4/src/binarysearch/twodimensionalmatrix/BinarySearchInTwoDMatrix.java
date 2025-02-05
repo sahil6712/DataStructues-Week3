@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class BinarySearchInTwoDMatrix {
 
     // Method to find the indices of a given target value
-    static int[] findTargetIndices(int[][] arr, int target) {
+    static boolean findTarget(int[][] arr, int target) {
 
         int start = 0;
         int end = arr[0].length-1;
@@ -15,14 +15,14 @@ public class BinarySearchInTwoDMatrix {
 
         // if we do not get the target row
         if(row == -1) {
-            return new int[]{-1, -1};
+            return false;
         }
 
         while(start <= end) {
             int mid = start+(end-start)/2;
 
             if(arr[row][mid] == target) {
-                return new int[]{row, mid};   // Returns the indices of the target
+                return true;
             }
             else if(arr[row][mid] < target) {
                 start = mid+1;
@@ -32,7 +32,7 @@ public class BinarySearchInTwoDMatrix {
             }
         }
 
-        return new int[]{-1, -1};   // if the target element is not found it will return this statement
+        return false;   // if the target element is not found it will return false
     }
 
     // Method to get the row of the target element
@@ -90,10 +90,10 @@ public class BinarySearchInTwoDMatrix {
         System.out.println("Enter the target value that you  need to search: ");
         int target = input.nextInt();
 
-        // Call the method to get the indices of the target value
-        int[] targetIndices = findTargetIndices(arr, target);
+        // Call the method to get result
+        boolean result = findTarget(arr, target);
 
         // Output
-        System.out.println("the indices of the searched element is: "+targetIndices[0]+" "+targetIndices[1]);
+        System.out.println("The target is in the matrix: "+result);
     }
 }
