@@ -22,7 +22,7 @@ public class CompareDataStructures {
         for(int i=0; i<size1; i++) {
             arr1[i] = (int)(Math.random()*999);
         }
-        
+
         HashSet<Integer> hs1 = new HashSet<>(size1);
         for(int i=0; i<size1; i++) {
             hs1.add((int)(Math.random()*999));
